@@ -34,6 +34,7 @@ this Python class.
 
 # Source packages.
 
+pokemon_ids=set()
 
 
 class Pokemon():
@@ -70,35 +71,69 @@ class Pokemon():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = Pokemon(1, "Bulbasaur", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating): void: 
+    def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):  
         self.pokemon_id=int(pokemon_id)
         self.pokemon_name=str(pokemon_name)
-        self.weapon_type=
-        self.health_points=int(health_points)
-        self.attack_rating=int(attack_rating)
+        if type(weapon_type)==WeaponType:
+           self.weapon_type=weapon_type
+        if health_points >=1 and health_points <=100:
+            self.health_points=int(health_points)
+        else:
+            raise Exception("El valor esta fuera del rango")
+        
+        if attack_rating >=1 and attack_rating<=100:
+             self.attack_rating=int(attack_rating)
+        else: 
+            raise Exception("El valor esta fuera del rango")
+   
+       if defense_rating >=1 and defense_rating <=100:
         self.defense_rating=int(defense_rating)
+       else: 
+        raise Exception("El valor esta fuera del rango")
+    
+        pokemon_ids.add(self.pokemon_ids)
+
     
 
     def getId(self):
+        return self.pokemon_id
     def getName(self):
+        return self.pokemon_name
     def getWeaponType(self):
+        return self.weapon_type
     def getAttackRating(self):
+        return self.attack_rating
     def getDefenseRating(self):
+        return self.defense_rating
     def getHealthPoints(self):
+        return self.health_points
 
-    def setId(self):
-    def setName(self):
-    def setWeaponType(self):
-    def setAttackRating(self):
-    def setDefenseRating(self):
-    def setHealthPoints(self):
+    def setId(self,pokemon_id):
+        self.pokemon_id=pokemon_id
+
+    def setName(self,pokemon_name):
+        self.pokemon_name=pokemon_name
+    def setWeaponType(self,weapon_type):
+        self.weapon_type=weapon_type
+    def setAttackRating(self,attack_rating):
+        self.attack_rating=attack_rating
+    def setDefenseRating(self,defense_rating):
+        self.defense_rating=defense_rating
+    def setHealthPoints(self,health_points):
+        self.health_points=health_points
 
 
     def is_alive(self):bool
     def fight_attack(self, pokemon_to_attack): bool
     def fight_defense(self, points_of_damage): bool
 
-    def __del__(self): void
+    def __str__(self):
+        return f"Pokemon ID {self.pokemon_id} with name {self.pokemon_name} has as weapon {self.weapon_type} and health {self.health_points}."
+    
+    
+
+    def __del__(self): 
+        pokemon_ids.remove(self.pokemon_id)
 
 
 def main():
