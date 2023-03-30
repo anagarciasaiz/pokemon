@@ -80,17 +80,17 @@ class Pokemon():
         self.pokemon_name=str(pokemon_name)
         if type(weapon_type)==WeaponType:
            self.weapon_type=weapon_type
-        if health_points >=1 and health_points <=100:
+        if int(health_points) >=1 and int(health_points) <=100:
             self.health_points=int(health_points)
         else:
             raise Exception("El valor esta fuera del rango")
         
-        if attack_rating >=1 and attack_rating<=100:
+        if int(attack_rating) >=1 and int(attack_rating)<=100:
             self.attack_rating=int(attack_rating)
         else: 
             raise Exception("El valor esta fuera del rango")
    
-        if defense_rating >=1 and defense_rating <=100:
+        if int(defense_rating)>=1 and int(defense_rating) <=100:
             self.defense_rating=int(defense_rating)
         else: 
             raise Exception("El valor esta fuera del rango")

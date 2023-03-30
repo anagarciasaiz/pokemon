@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+from pokemon import Pokemon
 
 
 """
@@ -56,6 +58,25 @@ def get_data_from_user(name_file):
     -------
       >>> list_pokemons = get_data_from_user("file.csv")
     """
+    list_pokemons=[]
+    #try:
+    print(name_file)
+    #with open(name_file) as file:
+      #lines = [line.rstrip() for line in file]
+    with open(name_file) as file:
+      lines=file.read().splitlines()
+      
+    for line in lines:
+        separated_line=line.split(",")
+        pokemon=Pokemon(separated_line[0],separated_line[1],separated_line[2],separated_line[3],separated_line[4],separated_line[5])
+        list_pokemons.append(pokemon)
+
+
+
+    #except:
+        #print("Error en la lectura del archivo")
+    return list_pokemons
+
 
 
 
@@ -110,6 +131,11 @@ def coach_is_undefeated(list_of_pokemons):
     -------
        >>> coach_is_undefeated(list_of_pokemons)
     """
+    for pokemon in list_of_pokemons:
+        if pokemon.is_alive():
+            return False
+    return True
+
 
 
 def main():
@@ -137,10 +163,16 @@ def main():
     print("Welcome to the Game.")
     print("Let's start to set the configuration of each game user. \n")
 
-    # Get configuration for Game User 1.
+    # Get configuration for Game User 1. 
+    
+  
+    coach1=get_data_from_user(os.getcwd()+("\Python Files\coach_1_pokemons.csv"))
+    print(coach1)
+   
 
 
     # Get configuration for Game User 2.
+    coach2=get_data_from_user(os.getcwd()+("\Python Files\coach_2_pokemons.csv"))
 
 
     print("------------------------------------------------------------------")
