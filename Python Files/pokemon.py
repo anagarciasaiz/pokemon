@@ -34,7 +34,7 @@ this Python class.
 
 # Source packages.
 
-pokemon_ids=set()
+
 
 
 class Pokemon():
@@ -71,6 +71,10 @@ class Pokemon():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = Pokemon(1, "Bulbasaur", WeaponType.PUNCH, 100, 7, 10)
     """
+    
+    pokemon_ids=set()
+
+
     def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):  
         self.pokemon_id=int(pokemon_id)
         self.pokemon_name=str(pokemon_name)
@@ -82,30 +86,31 @@ class Pokemon():
             raise Exception("El valor esta fuera del rango")
         
         if attack_rating >=1 and attack_rating<=100:
-             self.attack_rating=int(attack_rating)
+            self.attack_rating=int(attack_rating)
         else: 
             raise Exception("El valor esta fuera del rango")
    
-       if defense_rating >=1 and defense_rating <=100:
-        self.defense_rating=int(defense_rating)
-       else: 
-        raise Exception("El valor esta fuera del rango")
+        if defense_rating >=1 and defense_rating <=100:
+            self.defense_rating=int(defense_rating)
+        else: 
+            raise Exception("El valor esta fuera del rango")
     
-        pokemon_ids.add(self.pokemon_ids)
+        Pokemon.pokemon_ids.add(self.pokemon_id)
+
 
     
 
-    def getId(self):
+    def get_pokemon_id(self):
         return self.pokemon_id
-    def getName(self):
+    def get_pokemon_name(self):
         return self.pokemon_name
-    def getWeaponType(self):
+    def get_weapon_type(self):
         return self.weapon_type
-    def getAttackRating(self):
+    def get_attack_rating(self):
         return self.attack_rating
-    def getDefenseRating(self):
+    def get_defense_rating(self):
         return self.defense_rating
-    def getHealthPoints(self):
+    def get_health_points(self):
         return self.health_points
 
     def setId(self,pokemon_id):
@@ -123,17 +128,32 @@ class Pokemon():
         self.health_points=health_points
 
 
-    def is_alive(self):bool
-    def fight_attack(self, pokemon_to_attack): bool
-    def fight_defense(self, points_of_damage): bool
+    def is_alive(self):
+        return self.health_points > 0
+    
+    def fight_attack(self, pokemon_to_attack):
+        return pokemon_to_attack.fight_defense(self.attack_rating)
+
+    def fight_defense(self, points_of_damage): 
+        if self.defense_rating>points_of_damage:
+            return False
+        final_damage=self.health_points-(points_of_damage-self.defense_rating)
+        if final_damage<0:
+            self.health_points=0
+        else:
+            self.health_points= final_damage
+        return True
+    
+
+
 
     def __str__(self):
-        return f"Pokemon ID {self.pokemon_id} with name {self.pokemon_name} has as weapon {self.weapon_type} and health {self.health_points}."
+        return f"Pokemon ID {self.pokemon_id} with name {self.pokemon_name} has as weapon {self.weapon_type._name_} and health {self.health_points}"
     
     
 
     def __del__(self): 
-        pokemon_ids.remove(self.pokemon_id)
+        Pokemon.pokemon_ids.remove(self.pokemon_id)
 
 
 def main():
@@ -194,7 +214,6 @@ def main():
     print("Test Case 2: Human-readable format of the object.")
     print("=================================================================.")
     pokemon_2 = Pokemon(2, "Charmander", WeaponType.HEADBUTT, 100, 7, 10)
-
     if str(pokemon_2) == "Pokemon ID 2 with name Charmander has as weapon HEADBUTT and health 100":
         print("Test PASS. The human-readable format of the object has been implemented correctly.")
     else:
