@@ -61,8 +61,7 @@ def get_data_from_user(name_file):
     list_pokemons=[]
     #try:
     print(name_file)
-    #with open(name_file) as file:
-      #lines = [line.rstrip() for line in file]
+    
     with open(name_file) as file:
       lines=file.read().splitlines()
       
