@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 from pokemon import Pokemon
+import os
 
 
 """
@@ -60,10 +60,14 @@ def get_data_from_user(name_file):
     """
     list_pokemons=[]
     #try:
-    print(name_file)
+   
     
-    with open(name_file) as file:
-      lines=file.read().splitlines()
+    #with open(name_file) as file:
+      #lines=file.read().splitlines()
+    #file=open(name_file)
+    file=open(os.getcwd()+"\\Python Files\\"+name_file)
+    lines=file.readlines()
+
       
     for line in lines:
         separated_line=line.split(",")
@@ -165,13 +169,13 @@ def main():
     # Get configuration for Game User 1. 
     
   
-    coach1=get_data_from_user(os.getcwd()+("\Python Files\coach_1_pokemons.csv"))
+    coach1=get_data_from_user("coach_1_pokemons.csv")
     print(coach1)
    
 
 
     # Get configuration for Game User 2.
-    coach2=get_data_from_user(os.getcwd()+("\Python Files\coach_2_pokemons.csv"))
+    coach2=get_data_from_user("coach_2_pokemons.csv")
 
 
     print("------------------------------------------------------------------")
