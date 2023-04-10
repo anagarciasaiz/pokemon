@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from weapon_type import WeaponType
@@ -85,12 +86,12 @@ class Pokemon():
         else:
             raise Exception("El valor esta fuera del rango")
         
-        if int(attack_rating) >=1 and int(attack_rating)<=100:
+        if int(attack_rating) >=1 and int(attack_rating)<=10:
             self.attack_rating=int(attack_rating)
         else: 
             raise Exception("El valor esta fuera del rango")
    
-        if int(defense_rating)>=1 and int(defense_rating) <=100:
+        if int(defense_rating)>=1 and int(defense_rating) <=10:
             self.defense_rating=int(defense_rating)
         else: 
             raise Exception("El valor esta fuera del rango")

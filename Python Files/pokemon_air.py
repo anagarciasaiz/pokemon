@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from pokemon import Pokemon
+import random
+from weapon_type import WeaponType
 
 """
 This Python module contains not only the class Pokemon, but also the test of
@@ -35,7 +37,7 @@ this Python class.
 
 
 
-class PokemonAir():
+class PokemonAir(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
@@ -68,6 +70,13 @@ class PokemonAir():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
+    def fight_defense(self, points_of_damage): 
+        if random.choice([0,1])==1:
+            return super().fight_defense(points_of_damage)
+        else: 
+            return False
+    
+    
 
 
 def main():

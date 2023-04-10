@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from pokemon import Pokemon
+import random
+from weapon_type import WeaponType
 
 
 """
@@ -30,12 +33,18 @@ this Python class.
               prohibited without the written consent of the copyright owner.
 """
 
+    
+
+
+         
+         
+
 
 # Source packages.
 
 
 
-class PokemonElectricity():
+class PokemonElectricity(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
@@ -68,6 +77,12 @@ class PokemonElectricity():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pikachu", WeaponType.PUNCH, 100, 7, 10)
     """
+    def fight_attack(self, pokemon_to_attack):
+        if random.choice([0,1])==1:
+            return pokemon_to_attack.fight_defense(self.attack_rating*2)
+        else:
+            return super().fight_attack(pokemon_to_attack)
+        
 
 
 

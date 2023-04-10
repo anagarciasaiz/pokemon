@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from pokemon import Pokemon
+from weapon_type import WeaponType
 
 
 """
@@ -35,7 +37,7 @@ this Python class.
 
 
 
-class PokemonEarth():
+class PokemonEarth(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
@@ -68,6 +70,27 @@ class PokemonEarth():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
+    def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):  
+        self.pokemon_id=int(pokemon_id)
+        self.pokemon_name=str(pokemon_name)
+        if type(weapon_type)==WeaponType:
+           self.weapon_type=weapon_type
+        if int(health_points) >=1 and int(health_points) <=100:
+            self.health_points=int(health_points)
+        else:
+            raise Exception("El valor esta fuera del rango")
+        
+        if int(attack_rating) >=1 and int(attack_rating)<=10:
+            self.attack_rating=int(attack_rating)
+        else: 
+            raise Exception("El valor esta fuera del rango")
+   
+        if int(defense_rating)>=11 and int(defense_rating) <=20:
+            self.defense_rating=int(defense_rating)
+        else: 
+            raise Exception("El valor esta fuera del rango")
+    
+        Pokemon.pokemon_ids.add(self.pokemon_id)
 
 
 def main():

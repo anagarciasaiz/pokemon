@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from pokemon import Pokemon
+from weapon_type import WeaponType
 
 """
 This Python module contains not only the class Pokemon, but also the test of
@@ -35,7 +36,7 @@ this Python class.
 
 
 
-class PokemonWater():
+class PokemonWater(Pokemon):
     """Python class to implement a basic version of a Pokemon of the game.
 
     This Python class implements the basic version of a Pokemon of the game.
@@ -68,6 +69,28 @@ class PokemonWater():
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonWater(1, "Squirtle", WeaponType.PUNCH, 100, 7, 10)
     """
+    def __init__(self, pokemon_id, pokemon_name, weapon_type, health_points, attack_rating, defense_rating):  
+        self.pokemon_id=int(pokemon_id)
+        self.pokemon_name=str(pokemon_name)
+        if type(weapon_type)==WeaponType:
+           self.weapon_type=weapon_type
+        if int(health_points) >=1 and int(health_points) <=100:
+            self.health_points=int(health_points)
+        else:
+            raise Exception("El valor esta fuera del rango")
+        
+        if int(attack_rating) >=11 and int(attack_rating)<=20:
+            self.attack_rating=int(attack_rating)
+        else: 
+            raise Exception("El valor esta fuera del rango")
+   
+        if int(defense_rating)>=1 and int(defense_rating) <=10:
+            self.defense_rating=int(defense_rating)
+        else: 
+            raise Exception("El valor esta fuera del rango")
+    
+        Pokemon.pokemon_ids.add(self.pokemon_id)
+
 
 
 def main():
